@@ -1,0 +1,201 @@
+<html lang="pt-br">
+  <head>
+    <title>Catia Ateliê</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/font-awesome/5.15.3/all.min.css"/>
+    <link rel="stylesheet" href="./css/bootstrap/5.3.0-alpha1/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./css/main.css"/>
+
+    <script type="text/javascript" src="./scripts/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="./scripts/jquery/external/inputmask/inputmask.min.js"></script>
+    <script type="text/javascript" src="./scripts/jquery/external/inputmask/bindings/inputmask.binding.js"></script>
+    <script type="text/javascript" src="./scripts/jquery/external/jquery-validation/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="./scripts/jquery/external/jquery-validation/localization/messages_pt_BR.min.js"></script>
+    <script type="text/javascript" src="./scripts/jquery/external/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript" src="./scripts/brdocs.js"></script>
+    <script type="text/javascript" src="./scripts/main.js"></script>
+  </head>
+
+  <body>
+
+    <form id="form" method="post">
+
+      <input style="display: none" type="text" name="Row ID" id="row_id" />
+      <input style="display: none" type="text" name="Image1" id="image1">
+      <input style="display: none" type="text" name="Image2" id="image2">
+      <input style="display: none" type="text" name="Image3" id="image3">
+      <input style="display: none" type="text" name="Image4" id="image4">
+      <input style="display: none" type="text" name="Image5" id="image5">
+      <input style="display: none" type="text" name="Image6" id="image6">
+      <input style="display: none" type="text" name="Image7" id="image7">
+      <input style="display: none" type="text" name="Image8" id="image8">
+      <input style="display: none" type="text" name="Image9" id="image9">
+      <input style="display: none" type="text" name="Image10" id="image10">
+
+      <div class="img">
+        <img src="./images/catiasantospainellogo-removebg-preview.png" />
+      </div>
+
+      <div class="label-center">
+
+        <h2>Informe:</h2>
+
+        <div class="box-input">
+          <label for="numero_pedido">Número do Pedido:</label>
+          <input   type="text" id="numero_pedido" name="Numero Pedido" required placeholder="Digite aqui o número do seu pedido"/>
+        </div>
+
+        <div class="box-input">
+          <label for="nome_completo">Nome Completo:</label>
+          <input type="text" id="nome_completo" name="Nome Completo" required placeholder="Digite aqui o seu nome" maxlength="50"/>
+        </div>
+
+        <div class="box-input">
+          <label for="CNPJ_CPF">CPF/CNPJ:</label>
+          <input type="text" id="CNPJ_CPF" name="CNPJ_CPF" placeholder="Digite aqui o seu CPF ou CNPJ" data-inputmask="'mask': ['99999999999', '99999999999999'], 'keepStatic': true" />
+        </div>
+
+        <div class="box-input">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="Email" class="email" placeholder="Digite aqui o seu email" data-inputmask="'alias': 'email'"/>
+        </div>
+
+        <div class="box-input">
+          <label for="tel">Telefone:</label>
+          <input type="tel" id="tel" name="Telefone" maxlength="14" placeholder="Digite aqui o seu telefone" data-inputmask="'mask': '99999999999'"/>
+        </div>
+
+        <div class="box-input">
+          <label for="profissao">Profissão:</label>
+          <input type="text" id="profissao" name="Profissao" placeholder="Digite aqui sua profissão"/>
+        </div>
+
+        <div class="box-input">
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="CEP" placeholder="Digite aqui seu CEP" data-inputmask="'mask': '99999999'"/>
+        </div>
+
+        <div class="box-input">
+          <label for="num">Número:</label>
+          <input type="text" id="num" name="Número" placeholder="Número"/>
+        </div>
+
+        <div class="box-input">
+          <label for="apartamento">Número do Apartamento:</label>
+          <input type="text" id="apartamento" name="Apartamento" placeholder="Número do apartamento"/>
+        </div>
+
+        <div class="box-input">
+          <label for="insta">Link do seu Instagram:</label>
+          <input type="text" id="insta" name="Instagram" data-inputmask="'alias': 'url'" placeholder="https://example.com"/>
+        </div>
+
+        <!-- TODO corrigir formato da data -->
+        <div class="box-input">
+          <label for="data_parto">Data provável do Parto:</label>
+          <input type="date" data-inputmask="'alias': 'date'" id="data_parto" name="Data Provável do Parto"/>
+        </div>
+
+        <div class="box-input">
+          <label for="nome_crianca">Nome da Criança:</label>
+          <input type="text" id="nome_crianca" name="Nome da Criança" placeholder="Digite aqui o nome da criança"/>
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Descreva seu pedido:</label>
+          <textarea cols="20" rows="5" id="descricao" name="Descreva o que deseja" placeholder="Descreva aqui seu pedido"></textarea>
+        </div -->
+
+        <div class="box-input">
+          <label for="descricao">Imagem 1:</label>
+          <label class="picture" for="picture-input-1" tabIndex="0">
+            <span class="picture__image" id="picture-image-1"></span>
+          </label>
+          <input type="file" id="picture-input-1" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 2:</label>
+          <label class="picture" for="picture-input-2" tabIndex="0">
+            <span class="picture__image" id="picture-image-2"></span>
+          </label>
+          <input type="file" id="picture-input-2" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 3:</label>
+          <label class="picture" for="picture-input-3" tabIndex="0">
+            <span class="picture__image" id="picture-image-3"></span>
+          </label>
+          <input type="file" id="picture-input-3" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 4:</label>
+          <label class="picture" for="picture-input-4" tabIndex="0">
+            <span class="picture__image" id="picture-image-4"></span>
+          </label>
+          <input type="file" id="picture-input-4" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 5:</label>
+          <label class="picture" for="picture-input-5" tabIndex="0">
+            <span class="picture__image" id="picture-image-5"></span>
+          </label>
+          <input type="file" id="picture-input-5" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 6:</label>
+          <label class="picture" for="picture-input-6" tabIndex="0">
+            <span class="picture__image" id="picture-image-6"></span>
+          </label>
+          <input type="file" id="picture-input-6" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 7:</label>
+          <label class="picture" for="picture-input-7" tabIndex="0">
+            <span class="picture__image" id="picture-image-7"></span>
+          </label>
+          <input type="file" id="picture-input-7" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 8:</label>
+          <label class="picture" for="picture-input-8" tabIndex="0">
+            <span class="picture__image" id="picture-image-8"></span>
+          </label>
+          <input type="file" id="picture-input-8" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 9:</label>
+          <label class="picture" for="picture-input-9" tabIndex="0">
+            <span class="picture__image" id="picture-image-9"></span>
+          </label>
+          <input type="file" id="picture-input-9" class="file-hidden" accept="image/*">
+        </div>
+
+        <div class="box-input">
+          <label for="descricao">Imagem 10:</label>
+          <label class="picture" for="picture-input-10" tabIndex="0">
+            <span class="picture__image" id="picture-image-10"></span>
+          </label>
+          <input type="file" id="picture-input-10" class="file-hidden" accept="image/*">
+        </div>
+
+        <div>
+          <button id="submit" type="submit">Pesquisar</button>
+        </div>
+
+      </div>
+    </form>
+  </body>
+</html>
