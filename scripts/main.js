@@ -25,7 +25,7 @@ $().ready(function () {
 
 	function resetForm() {
 		$("#form .box-input").not(":first").hide();
-		$("#form").each(function() {
+		$("#form").each(function () {
 			this.reset();
 		});
 
@@ -45,30 +45,28 @@ $().ready(function () {
 		const pictureImage = document.querySelector("#picture-image-" + i);
 		const pictureImageTxt = "Choose an image";
 		pictureImage.innerHTML = pictureImageTxt;
-		
+
 		inputFile.addEventListener("change", function (e) {
-		  const inputTarget = e.target;
-		  const file = inputTarget.files[0];
-		
+			const inputTarget = e.target;
+			const file = inputTarget.files[0];
+
 			if (file) {
 				const reader = new FileReader();
-			
+
 				reader.addEventListener("load", function (e) {
 					const readerTarget = e.target;
-				
+
 					const img = document.createElement("img");
 					const base64String = readerTarget.result;
 					img.src = base64String;
 					img.classList.add("picture__img");
-				
+
 					pictureImage.innerHTML = "";
 					pictureImage.appendChild(img);
 
-					base64String.replace('data:', '').replace(/^.+,/, '');
-
 					$("#image" + i).val(base64String);
 				});
-				
+
 				reader.readAsDataURL(file);
 			} else {
 				pictureImage.innerHTML = pictureImageTxt;
@@ -86,16 +84,23 @@ $().ready(function () {
 
 		const json = mountJson(action);
 
-		var response = await fetch('https://api.appsheet.com/api/v2/apps/e7e63295-0f90-40b4-bcfb-18177b8d3d18/tables/Pedidos/Action', {
-			method: 'POST',
+		var request = $.ajax({
+			type: "POST",
+			url: "https://api.appsheet.com/api/v2/apps/e7e63295-0f90-40b4-bcfb-18177b8d3d18/tables/Pedidos/Action",
 			headers: {
 				'Content-Type': 'application/json',
 				'ApplicationAccessKey': 'V2-frqfc-bdaua-E0GRB-o1ZKd-X8qoD-rX7Zd-qW5RJ-5OW4f'
 			},
-			body: json
+			dataType: "json",
+			cache: false,
+			data: json
 		});
-
-		showResponse(response, action);
+		request.done(function (data) {
+			showResponse(data, action);
+		});
+		request.fail(function (jqXHR, textStatus, errorThrown) {
+			showMessage(jqXHR.status + ": " + jqXHR.responseJSON.Message);
+		});
 	}
 
 	function mountJson(action) {
@@ -121,31 +126,23 @@ $().ready(function () {
 		return JSON.stringify(json);
 	}
 
-	async function showResponse(response, action) {
-		if (response.ok) {
-			if (action === "Find") {
-				var body = await response.json();
-				var registro = body[0];
-				if (registro) {
-					$('#row_id').val(registro["Row ID"]);
-					$('#numero_pedido').prop('disabled', true);
-					$("#form .box-input").not(":first").show();
-					$('#nome_completo').focus();
-					$('#submit').html("Enviar pedido");
-				} else {
-					showMessage("Nenhum registro encontrado");
-					$('#submit').html("Pesquisar");
-				}
+	async function showResponse(data, action) {
+		if (action === "Find") {
+			var registro = data[0];
+			if (registro) {
+				$('#row_id').val(registro["Row ID"]);
+				$('#numero_pedido').prop('disabled', true);
+				$("#form .box-input").not(":first").show();
+				$('#submit').html("Enviar pedido");
+				$('#nome_completo').focus();
 			} else {
-				resetForm();
-				showMessage("Pedido enviado com sucesso!");
+				showMessage("Pedido não encontrado");
+				$('#submit').html("Pesquisar");
+				$('#numero_pedido').focus();
 			}
 		} else {
-			if (action === "Find") {
-				showMessage("Pedido não localizado");
-			} else {
-				showMessage("Falha na requisição");
-			}
+			resetForm();
+			showMessage("Pedido enviado com sucesso!");
 		}
 		$('#submit').prop('disabled', false);
 	}
